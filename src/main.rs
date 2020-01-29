@@ -6,10 +6,8 @@ use std::thread::sleep;
 use std::convert::TryInto;
 
 fn main() {
-    let mut player_alive: bool = true;
     let mut player_skill: u32 = 9;
     let mut player_score: u32 = 1;
-    let mut zombie_count: u32 = 0;
     let mut zombies_killed: u32 = 0;
 
     println!("Welcome to Zombie War.\nPress [ENTER] to start.");
@@ -22,12 +20,12 @@ fn main() {
     // ask how many zombies
     println!("How many zombies do you wish to fight?");
     
-    let zombie_count = get_integer();
+    let zombie_count: u32 = get_integer();
 
     println!("Get ready to fight for your life!!");
 
     // main game loop
-    while player_alive && zombies_killed < zombie_count {
+    while zombies_killed < zombie_count {
         // create a random zombie
         let zombie_skill: u32 = create_zombie();
 
@@ -66,7 +64,6 @@ fn main() {
                 println!("this isn't looking good...");
             } else {
                 println!("\nZombie bit you, and you died.");
-                player_alive = false;
                 break;
             }
 
@@ -76,7 +73,6 @@ fn main() {
                 println!("this is very bad...");
             } else {
                 println!("\nZombie bit you, and you died.");
-                player_alive = false;
                 break;
             }
 
@@ -86,7 +82,6 @@ fn main() {
                 println!("but you survived somehow.");
             } else {
                 println!("\nZombie bit you, and you died.");
-                player_alive = false;
                 break;
             }            
         }
@@ -133,7 +128,7 @@ fn main() {
     println!("Final score: {}", player_score);
 }
 
-fn nothingness() {
+fn _nothingness() {
 	// sleep(Duration::new(2, 0));
 
 	//println!("Time: {:?}", seconds);
