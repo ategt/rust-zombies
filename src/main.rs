@@ -6,6 +6,11 @@ use std::thread::sleep;
 use std::convert::TryInto;
 
 fn main() {
+    let playerAlive: bool = true;
+    let playerSkill: u32 = 9;
+    let playerScore: u32 = 1;
+    let zombieCount: u32 = 0;
+    let zombiesKilled: u32 = 0;
 
     println!("Welcome to Zombie War.\nPress [ENTER] to start.");
 
