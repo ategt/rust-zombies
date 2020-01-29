@@ -6,11 +6,11 @@ use std::thread::sleep;
 use std::convert::TryInto;
 
 fn main() {
-    let playerAlive: bool = true;
-    let playerSkill: u32 = 9;
-    let playerScore: u32 = 1;
-    let zombieCount: u32 = 0;
-    let zombiesKilled: u32 = 0;
+    let mut player_alive: bool = true;
+    let mut player_skill: u32 = 9;
+    let mut player_score: u32 = 1;
+    let mut zombie_count: u32 = 0;
+    let mut zombies_killed: u32 = 0;
 
     println!("Welcome to Zombie War.\nPress [ENTER] to start.");
 
@@ -26,7 +26,98 @@ fn main() {
 
     println!("Get ready to fight for your life!!");
 
-    //cin >> zombieCount;
+    // main game loop
+    while (player_alive && zombies_killed < zombie_count) {
+        // create a random zombie
+        let zombie_skill: u32 = create_zombie();
+
+        // battle sequence
+        if (zombie_skill > 10) {
+            println!("\nHere comes a huge zombie! \t{} vs {}", zombie_skill, player_skill);
+        }
+        else {
+            //cout << endl << "Here comes zombie " << zombie_Skilled + 1 << endl;
+            println!("\nHere comes zombie {}\t {} vs {}", zombies_killed + 1, zombie_skill, player_skill);
+        }
+
+        println!("Fighting...");
+
+        if player_skill - zombie_skill > 0 {
+            println!("{}", 3000 - (player_skill - zombie_skill) * 100);
+            if 3000 - (player_skill - zombie_skill) * 100 > 0 {
+            	//sleep(Duration::new(2, 0));
+                //Sleep(3000 - (player_skill - zombie_skill) * 100);
+                sleep(Duration::new(0, 3000 - (player_skill - zombie_skill) * 100));
+            } else {
+                //Sleep(50);
+                sleep(Duration::new(0, 50));
+            }
+        } else {
+            println!("Fighting...");
+            sleep(Duration::new(4, 0));
+            println!("You're struggling...");
+            sleep(Duration::new(4, 0));
+
+            if rand() % 10 > 3 {
+                println!("this isn't looking good...");
+            } else {
+                println!("\nZombie bit you, and you died.");
+                player_alive = false;
+                break;
+            }
+
+            sleep(Duration::new(4, 0));
+
+            if rand() % 10 > 3 {
+                println!("this is very bad...");
+            } else {
+                println!("\nZombie bit you, and you died.");
+                player_alive = false;
+                break;
+            }
+
+            sleep(Duration::new(4, 0));
+
+            if rand() % 10 > 3 {
+                println!("but you survived somehow.");
+            } else {
+                println!("\nZombie bit you, and you died.");
+                player_alive = false;
+                break;
+            }            
+        }
+
+        {
+            if (player_skill - zombie_skill > 7) {
+                println!("You wasted the zombie!");
+                player_score = player_score * 2;
+            }
+
+            else if (player_skill - zombie_skill > 5) {
+                println!("You decapitated the zombie!");
+                player_score = player_score * 2;
+            }
+
+            else if (player_skill - zombie_skill > 0) {
+                println!("You killed the zombie!");
+                player_score = player_score * 2;
+            }
+
+            else {
+                println!("You killed the zombie, but suffered injuries.");
+            }
+
+            zombies_killed += 1;
+            player_skill = 9 + zombies_killed / 3;
+        }
+
+        println!("");
+        sleep(Duration::new(5, 0));
+    }
+
+
+
+
 
 
 	// sleep(Duration::new(2, 0));
