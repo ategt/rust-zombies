@@ -6,19 +6,15 @@ use std::thread::sleep;
 use std::convert::TryInto;
 
 fn main() {
-	let st = SystemTime::now();
+
+    println!("Welcome to Zombie War.\nPress [ENTER] to start.");
+
+    let mut nothing = String::new();
+
+	io::stdin().read_line(&mut nothing)
+	    	.expect("Failure to Read Line!");
 
 	// sleep(Duration::new(2, 0));
-
-	// match SystemTime::now().duration_since(SystemTime::UNIX_EPOCH) {
-	// 	Ok(n) => println!("1970 UTC was {} seconds ago.", n.as_secs()),
-	// 	Err(_) => panic!("SystemTime is before Unix Epoch!?"),
-	// }
-
-	let seconds = match st.duration_since(SystemTime::UNIX_EPOCH) {
-		Ok(n) => n.as_secs(),
-		Err(_) => panic!("SystemTime is before Unix Epoch!?"),
-	};
 
 	//println!("Time: {:?}", seconds);
 	//println!("Number: {}", seconds % 100);
@@ -26,7 +22,8 @@ fn main() {
 
     //let secret_number = rand:thread_rng().gen_range(1, 101);
     //let secret_number = 7;
-    let secret_number: u32 = (seconds % 100).try_into().unwrap();
+    //let secret_number: u32 = (seconds % 100).try_into().unwrap();
+    let secret_number: u32 = rand();
 
     println!("The Secret Number is {}", secret_number);
 
@@ -68,7 +65,7 @@ fn rand() -> u32 {
 }
 
 fn create_zombie() -> u32 {
-    if (rand() % 67 < 10) {
+    if rand() % 67 < 10 {
         11
     } else {
         rand() % 10 + 1
