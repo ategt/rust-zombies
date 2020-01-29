@@ -115,11 +115,21 @@ fn main() {
         sleep(Duration::new(5, 0));
     }
 
+    // end game
+    if zombies_killed == zombie_count {
+        // victory
+        println!("You have survived the onslaught!");
+    }
+    else {
+        // lost
+        println!("You did not survive the zombie war.");
+    }
 
+    println!("Zombies killed: {}", zombies_killed);
+    println!("Final score: {}", player_score);
+}
 
-
-
-
+fn nothingness() {
 	// sleep(Duration::new(2, 0));
 
 	//println!("Time: {:?}", seconds);
