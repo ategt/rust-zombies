@@ -42,8 +42,15 @@ fn main() {
 
         println!("Fighting...");
 
+        //let psk: i32 = (player_skill).try_into().unwrap();
+        let skill_difference: i32 = {
+        	let zombie_skill: i32 = (zombie_skill).try_into().unwrap();
+        	let player_skill: i32 = (player_skill).try_into().unwrap();
+        	player_skill - zombie_skill
+        };
+
         if player_skill - zombie_skill > 0 {
-            println!("{}", 3000 - (player_skill - zombie_skill) * 100);
+            //println!("{}", 3000 - (player_skill - zombie_skill) * 100);
             if 3000 - (player_skill - zombie_skill) * 100 > 0 {
             	//sleep(Duration::new(2, 0));
                 //Sleep(3000 - (player_skill - zombie_skill) * 100);
