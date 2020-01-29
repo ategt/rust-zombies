@@ -57,3 +57,20 @@ fn main() {
 		}
 	}
 }
+
+fn rand() -> u32 {
+	let seconds: u64 = match SystemTime::now().duration_since(SystemTime::UNIX_EPOCH) {
+		Ok(n) => n.as_secs(),
+		Err(_) => panic!("SystemTime is before Unix Epoch!?"),
+	};
+
+	(seconds % 100).try_into().unwrap()
+}
+
+fn create_zombie() -> u32 {
+    if (rand() % 67 < 10) {
+        11
+    } else {
+        rand() % 10 + 1
+    }
+}
