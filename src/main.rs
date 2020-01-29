@@ -27,22 +27,20 @@ fn main() {
     println!("Get ready to fight for your life!!");
 
     // main game loop
-    while (player_alive && zombies_killed < zombie_count) {
+    while player_alive && zombies_killed < zombie_count {
         // create a random zombie
         let zombie_skill: u32 = create_zombie();
 
         // battle sequence
-        if (zombie_skill > 10) {
+        if zombie_skill > 10 {
             println!("\nHere comes a huge zombie! \t{} vs {}", zombie_skill, player_skill);
         }
         else {
-            //cout << endl << "Here comes zombie " << zombie_Skilled + 1 << endl;
             println!("\nHere comes zombie {}\t {} vs {}", zombies_killed + 1, zombie_skill, player_skill);
         }
 
         println!("Fighting...");
 
-        //let psk: i32 = (player_skill).try_into().unwrap();
         let skill_difference: i32 = {
         	let zombie_skill: i32 = (zombie_skill).try_into().unwrap();
         	let player_skill: i32 = (player_skill).try_into().unwrap();
@@ -60,7 +58,6 @@ fn main() {
                 sleep(Duration::new(0, 50));
             }
         } else {
-            println!("Fighting...");
             sleep(Duration::new(4, 0));
             println!("You're struggling...");
             sleep(Duration::new(4, 0));
@@ -95,17 +92,17 @@ fn main() {
         }
 
         {
-            if (skill_difference > 7) {
+            if skill_difference > 7 {
                 println!("You wasted the zombie!");
                 player_score = player_score * 2;
             }
 
-            else if (skill_difference > 5) {
+            else if skill_difference > 5 {
                 println!("You decapitated the zombie!");
                 player_score = player_score * 2;
             }
 
-            else if (skill_difference > 0) {
+            else if skill_difference > 0 {
                 println!("You killed the zombie!");
                 player_score = player_score * 2;
             }
