@@ -49,12 +49,12 @@ fn main() {
         	player_skill - zombie_skill
         };
 
-        if player_skill - zombie_skill > 0 {
-            //println!("{}", 3000 - (player_skill - zombie_skill) * 100);
-            if 3000 - (player_skill - zombie_skill) * 100 > 0 {
+        if skill_difference > 0 {
+            //println!("{}", 3000 - (skill_difference) * 100);
+            if 3000 - (skill_difference) * 100 > 0 {
             	//sleep(Duration::new(2, 0));
-                //Sleep(3000 - (player_skill - zombie_skill) * 100);
-                sleep(Duration::new(0, 3000 - (player_skill - zombie_skill) * 100));
+                //Sleep(3000 - (skill_difference) * 100);
+                sleep(Duration::new(0, (3000 - skill_difference * 100).try_into().unwrap()));
             } else {
                 //Sleep(50);
                 sleep(Duration::new(0, 50));
@@ -95,17 +95,17 @@ fn main() {
         }
 
         {
-            if (player_skill - zombie_skill > 7) {
+            if (skill_difference > 7) {
                 println!("You wasted the zombie!");
                 player_score = player_score * 2;
             }
 
-            else if (player_skill - zombie_skill > 5) {
+            else if (skill_difference > 5) {
                 println!("You decapitated the zombie!");
                 player_score = player_score * 2;
             }
 
-            else if (player_skill - zombie_skill > 0) {
+            else if (skill_difference > 0) {
                 println!("You killed the zombie!");
                 player_score = player_score * 2;
             }
