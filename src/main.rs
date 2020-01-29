@@ -14,6 +14,16 @@ fn main() {
 	io::stdin().read_line(&mut nothing)
 	    	.expect("Failure to Read Line!");
 
+    // ask how many zombies
+    println!("How many zombies do you wish to fight?");
+    
+    let zombie_count = get_integer();
+
+    println!("Get ready to fight for your life!!");
+
+    //cin >> zombieCount;
+
+
 	// sleep(Duration::new(2, 0));
 
 	//println!("Time: {:?}", seconds);
@@ -70,4 +80,18 @@ fn create_zombie() -> u32 {
     } else {
         rand() % 10 + 1
     }
+}
+
+fn get_integer() -> u32 {
+	let mut guess = String::new();
+
+    io::stdin().read_line(&mut guess)
+    	.expect("Failure to Read Line!");
+
+	let guess: u32 = match guess.trim().parse() {
+		Ok(num) => num,
+		Err(_) => panic!("That is not a number!"),
+	};
+
+	guess
 }
