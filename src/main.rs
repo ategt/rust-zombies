@@ -1,8 +1,20 @@
 use std::io;
 //use rand::Rng;
 use std::cmp::Ordering;
+use std::time::{ SystemTime, Duration };
+use std::thread::sleep;
 
 fn main() {
+	let st = SystemTime::now();
+
+	sleep(Duration::new(2, 0));
+
+	match SystemTime::now().duration_since(SystemTime::UNIX_EPOCH) {
+		Ok(n) => println!("1970 UTC was {} seconds ago.", n.as_secs()),
+		Err(_) => panic!("SystemTime is before Unix Epoch!?"),
+	}
+
+	println!("Time: {:?}", st);
     println!("Guess the number!");
 
     //let secret_number = rand:thread_rng().gen_range(1, 101);
